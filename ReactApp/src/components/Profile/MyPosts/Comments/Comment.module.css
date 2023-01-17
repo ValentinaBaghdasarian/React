@@ -1,0 +1,54 @@
+.comments{
+    padding: 15px;
+}
+
+.item{
+    display: grid;
+    grid-template-areas: 
+    'postAvatar userName'
+    'postAvatar comment'
+    'postAvatar comLike';
+
+    grid-template-columns: 1fr 10fr ;
+}
+
+.postAvatar{
+    grid-area: postAvatar;
+}
+
+.userName{
+    grid-area: userName;
+    font-weight: bold;
+}  
+
+.comment{
+    grid-area: comment;
+}
+
+.comLike{
+    grid-area: comLike;
+    
+}
+
+.comLike span{
+    margin:0px 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.name_com{
+    width: 200px;
+    padding-left: 10px;
+    border-radius: 25px;
+    border:none;
+    background-color:#F0F2F5;
+}
+
+.item img{ 
+    border-radius: 50%;
+    width: 50px;
+}
+
+.text{
+    display: inline;
+}

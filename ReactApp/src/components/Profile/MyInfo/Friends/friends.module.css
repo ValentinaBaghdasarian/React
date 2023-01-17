@@ -1,0 +1,51 @@
+.myFriends{
+    width: 370px;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color:white;
+    display: grid;
+    grid-template-areas: 
+    'titles'
+    'photos';
+    grid-template-rows: 1fr 10fr;
+}
+
+.titles{
+    grid-area: titles;
+    display: grid;
+    grid-template-areas: 
+    'title allPhotos';
+    grid-template-columns: 9fr 4fr;
+}
+
+.title{
+    grid-area: title;
+}
+
+.title h3 {
+    margin: 0;
+    cursor: pointer;
+}
+
+.allFriends{
+    grid-area: allPhotos;
+    color: blue;
+    cursor: pointer;
+    padding-left: 5px;
+}
+
+.inscription{
+    font-size: 15px;
+    color: rgb(61, 61, 61);
+}
+
+.photos{
+    grid-area: photos;
+}
+
+.allFriends:hover{
+    height: 30px;
+    background-color:#e4e6ebc4;
+    border-radius:5px;
+}

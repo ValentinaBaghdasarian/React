@@ -1,0 +1,16 @@
+.nav{
+    grid-area: nav;
+    background:linear-gradient(#49745a, #495774);
+    /* background-color:#95602F; */
+    margin-top: 5px;
+    padding: 20px;
+}
+
+.item a{
+    color: white;
+    text-decoration: none;
+}
+
+.item a.active{
+    color:rgb(26, 134, 211);
+}

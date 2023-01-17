@@ -1,0 +1,15 @@
+.results{
+    padding-left: 15px;
+    display: grid;
+    grid-template-areas: 
+    'countOfLike countOfComment';
+    grid-template-columns: 10fr 3fr;
+}
+
+.countOfLike{
+    grid-area: countOfLike;
+}
+
+.countOfComment{
+    grid-area: countOfComment;
+}

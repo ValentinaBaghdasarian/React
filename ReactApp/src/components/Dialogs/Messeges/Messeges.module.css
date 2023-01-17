@@ -1,0 +1,41 @@
+.messages{
+    grid-area: messages;
+    /* height: 600px; */
+    padding: 10px;
+    margin-top: 10px;
+    background-color:white;
+}
+
+
+.messagesForm{
+    
+}
+
+.messageArea{
+    display: flex;
+    /* flex-direction: column; */
+    width: 1000px;
+    border-top: 1px solid grey;
+}
+
+.area{
+    width: 800px;
+    background-color: #F0F2F5;
+
+}
+
+.area:hover{
+    background-color: #cbd0d7;
+    transition: 0.5s;
+}
+
+.submit{
+    width: 100px;
+    border-radius: 3px;
+    background-color:rgba(15, 133, 115, 0.481);
+}
+
+
+.submit:hover{
+    background-color:rgba(97, 176, 164, 0.481);
+}

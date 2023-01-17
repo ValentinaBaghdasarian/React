@@ -1,0 +1,31 @@
+.dialogsItems{
+    grid-area: dialogs;
+    padding: 10px;
+    width: 300px;
+    height: 600px;
+    margin-top: 10px;
+    font-size: 25px;
+    background-color: rgba(96, 173, 162, 0.189);
+    border-right: 1px solid;
+}
+
+.item{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+.item a{
+    grid-area: a;
+    text-decoration: none;
+    color:rgb(0, 0, 0);
+}
+
+.item a.active{
+    color:blue;
+}
+
+.item img{
+    grid-area: img;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
