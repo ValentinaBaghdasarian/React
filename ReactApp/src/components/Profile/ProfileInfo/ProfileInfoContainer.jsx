@@ -1,27 +1,28 @@
 import React from 'react';
 import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../redux/store';
+import StoreContext from '../../../redux/StoreContext';
 import ProfileInfo from './ProfileInfo';
 
 
 
 
 
-function ProfileInfoContainer(props){
-    
-    // let newPostElement = React.createRef();
-
-    let onAddPost = () => {
-        // if(props.store.getState().profile.newPostText !== ''){
-            props.store.dispatch(addPostActionCreator());    
-        // } 
-    };
-
-    let onPostChange = (text) =>{
-        let action = updateNewPostTextActionCreator(text);
-        props.store.dispatch(action);
-    };
-
-    return <ProfileInfo updateNewPostText={onPostChange} addPost={onAddPost} profile={props.store.getState().profile}/>
+function ProfileInfoContainer(){
+    return(
+        <StoreContext>{
+            (store) => {
+                let onAddPost = () => {
+                        store.dispatch(addPostActionCreator());
+                };
+            
+                let onPostChange = (text) =>{
+                    store.dispatch(updateNewPostTextActionCreator(text));
+                };
+            
+                return <ProfileInfo updateNewPostText={onPostChange} addPost={onAddPost} profile={store.getState().profile}/> 
+            }
+        }</StoreContext>
+    );
 }
 
 export default ProfileInfoContainer;
