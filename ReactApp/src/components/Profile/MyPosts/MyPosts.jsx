@@ -12,7 +12,6 @@ function Comments(props){
 }
 
 
-
 function MyPosts(props){
     let PostElements = props.profile.postsData.map(p => <NewPosts CommentElements={p.commentsData? p.commentsData.map(c => <Comments name={c.name} comment={c.comment} src={c.src}/>): ''} id={p.id} src={p.src} text={p.text}/>)
 

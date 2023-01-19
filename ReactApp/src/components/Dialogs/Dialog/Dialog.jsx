@@ -4,6 +4,7 @@ import DialogsItem from "./DialogsItem/DialogsItem";
 
 
 function Dialog(props){
+    debugger
 let state = props.store.getState().dialog;
 let DialogElements = state.dialogData.map( d => <DialogsItem id={d.id} name={d.name} url={d.url}/>);
 

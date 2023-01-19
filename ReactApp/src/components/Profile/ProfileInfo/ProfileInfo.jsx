@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './ProfileInfo.module.css';
 import UserAvatar from '../UserAvatar/UserAvatar';
-import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../redux/state';
+// import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../redux/store';
 
 
 
@@ -9,27 +9,19 @@ import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../red
 
 
 function ProfileInfo(props){
+debugger
+    // let newPostElement = React.createRef();
 
-    let newPostElement = React.createRef();
-
-    let addPost = () => {
-        // let results = newPostElement.current.value;
-        // if(results !== ''){
-        //     console.log(results);
-        //     props.addPost(results);
-        //     props.updateNewPostText("");
-        if(props.newPostText !== ''){
-            // props.addPost();
-            props.dispatch(addPostActionCreator());  
-        }  
-         
+    let onAddPost = () => {
+        if(props.profile.newPostText !== ''){
+            props.addPost();
+        }
     };
 
-    let onPostChange = () =>{
-        let results = newPostElement.current.value;
-        // props.updateNewPostText(results);
-        let action = updateNewPostTextActionCreator(results);
-        props.dispatch(action);
+    let onPostChange = (e) =>{
+        // let text = newPostElement.current.value;
+        let text = e.target.value;
+        props.updateNewPostText(text);
     };
 
     return (
@@ -42,14 +34,14 @@ function ProfileInfo(props){
                                type='text' 
                                placeholder="What's on your mind?" 
                                onChange={onPostChange}
-                               ref={newPostElement}
-                               value={props.newPostText}              
+                            //    ref={newPostElement}
+                               value={props.profile.newPostText}              
                         />                        
                     </div>
                 </div>
                 <hr />
                 <div className={classes.button}>
-                    <button onClick={addPost}>Photo/Video</button>
+                    <button onClick={onAddPost}>Photo/Video</button>
                 </div>
                 
             </div>

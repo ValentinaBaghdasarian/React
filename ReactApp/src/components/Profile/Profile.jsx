@@ -3,7 +3,8 @@ import MyInfo from "./MyInfo/MyInfo";
 import MyPosts from "./MyPosts/MyPosts";
 import classes from'./Profile.module.css';
 import ProfileAvatar from "./ProfileAvatar/ProfileAvatar";
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
+// import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import ProfileInfoContainer from "./ProfileInfo/ProfileInfoContainer";
 
 function Profile(props){
     return (
@@ -19,7 +20,8 @@ function Profile(props){
             </div>
             <div className={classes.profileContent}>
                 <MyInfo profile={props.state.profile}/>
-                <ProfileInfo newPostText={props.state.profile.newPostText} dispatch={props.dispatch}/>
+                {/* <ProfileInfo newPostText={props.state.profile.newPostText} dispatch={props.dispatch}/> */}
+                <ProfileInfoContainer store={props.store}/>
                 <MyPosts profile={props.state.profile}/>
             </div>
        </div>
