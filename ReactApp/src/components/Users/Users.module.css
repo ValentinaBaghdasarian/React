@@ -1,0 +1,104 @@
+.usersArea{
+    height: 800px;
+    background: linear-gradient(to top right,rgb(237, 187, 195), #7ccf9d)
+    /* background: rgb(250, 240, 240); */
+}
+
+.usersAreaForm{
+    background: white;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius:20px;
+}
+.userArea{
+    display: grid;
+    grid-template-areas: 
+    'postAvatar userInfo followedBtn'
+    'postAvatar userLocation followedBtn';
+    grid-template-rows: 3fr 2fr;
+    grid-template-columns: 1fr 10fr 2fr;
+    border-top: 0.1px rgb(196, 195, 195) solid;
+    height: 100px;
+    padding: 10px;
+    margin: 15px;
+    
+}
+.postAvatar{
+    grid-area: postAvatar;
+}
+
+
+.userInfo{
+    grid-area: userInfo;
+    padding-left: 5px;
+}
+
+.userName{
+    font-weight: bold;
+}
+
+.userStatus{
+    font-family: 'Times New Roman', serif;
+    font-size: 15px;
+    padding-top: 6px;
+    font-style: italic;
+
+  
+}
+
+.userLocation{
+    grid-area: userLocation;
+    padding-left: 7px;
+
+}
+.followedBtn{
+    grid-area: followedBtn;
+    width: 80px;
+    height: 30px;
+    border-radius: 4px;
+    font-weight: bold;
+    background: linear-gradient(to bottom right,#7ccf9d, rgb(248, 194, 203)) ;
+}
+
+.followedBtn:hover{
+    background: linear-gradient(to bottom right,rgb(248, 194, 203),#7ccf9d ) ;
+    opacity: 0.7;
+    transition: 0.1s;
+}
+
+
+.seeMoreBtnForm{
+    grid-area: seeAllBtn;
+    width: 550px;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;    
+}
+
+.seeMoreBtnForm input{
+    grid-area: seeAllBtn;
+    color:white;
+    border-radius: 20px;
+    background: #2d563d;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.seeMoreBtn:hover {
+    transition: 0.1s;
+    background: #204f33;
+}
+
+.text{
+    margin: 0px;
+    padding: 5px 0px 0px 20px;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+

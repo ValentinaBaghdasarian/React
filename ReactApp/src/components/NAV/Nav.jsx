@@ -13,7 +13,7 @@ function nav(){
             <NavLink to="/dialogs" className={({ isActive }) => (isActive ? classes.active : classes.item)}>Messages</NavLink>
           </div>
           <div className={classes.item}>
-            <NavLink to='/news'>News</NavLink>
+            <NavLink to='/users'>News</NavLink>
           </div>
           <div className={classes.item}>
             <a>Music</a>

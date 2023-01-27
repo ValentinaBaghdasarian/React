@@ -37,25 +37,46 @@ let initialState =  {
             }
         ],
         messagesData: [
-            {id: 1, message: 'Hi'},
-            {id: 2, message: 'Hi my dear'},
-            {id: 3, message: 'You are welcome!!!'}
+            {id: 1, message: [{text:'Hi'},{text:'Hi'},{text:'Hi'},{text:'Hi'}],},
+            {id: 2, message:[{text:'Hi my dear'},{text:'Hi my dear'},{text:'Hi my dear'},{text:'Hi my dear'}],},
+            {id: 3, message: [{text:'You are welcome!!!'},{text:'You are welcome!!!'},{text:'You are welcome!!!'},{text:'You are welcome!!!'}],},
+            {id: 4, message: []},
+            {id: 5, message: []},
+            {id: 6, message: []},
+            {id: 7, message: []},
+            {id: 8, message: []},
+
         ],
         newMessageBody: '',
 };
 
 const dialogReducer = (state = initialState, action) => {
+    let copyState = JSON.parse(JSON.stringify(state));
     switch(action.type){
         case SEND_MESSAGE: 
-            let body = state.newMessageBody;
-            state.messagesData.push({id: 4, message: body});
-            state.newMessageBody = '';
-            return state ;
+            let body = copyState.newMessageBody;
+            copyState.messagesData.map(mess => {
+                if(mess.id === action.userId) {
+                    mess.message.push({text: body});
+                    copyState.newMessageBody = '';
+                    return copyState;
+                }
+            });
+            return copyState ;
         case UPDATE_NEW_MESSAGE_BODY: 
-        state.newMessageBody = action.newMessageText;
-            return state;
+        copyState.newMessageBody = action.newMessageText;
+            return copyState;
         default: return state;
     }
+};
+
+export let addMessageActionCreator = (userId) =>({type: SEND_MESSAGE, userId});
+
+export let updateNewMessageTextActionCreator = (messageText) => {
+    return {
+        type: UPDATE_NEW_MESSAGE_BODY,
+        newMessageText: messageText, 
+    };
 };
 
 export default dialogReducer;

@@ -1,9 +1,13 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
+const ADD_COMMENT = 'ADD_COMMENT';
+const UPDATE_NEW_COMMENT_TEXT = 'UPDATE_NEW_COMMENT_TEXT';
+
+const LIKE = 'LIKE';
+const DISLIKE = 'DISLIKE';
 
 let initialState = {
-     
         postsData: [
             {
                 id: 1,
@@ -27,8 +31,10 @@ let initialState = {
                         name: 'Lucas',
                         comment: 'Hi',
                         src: 'https://celebsupdate.com/wp-content/uploads/2020/02/Chris-Hemsworth-Hollywood-Actor.jpg'
-                    }
-                ]
+                    },
+                ],
+                liked: true,
+                likesCount: 124,
             },
             {
                 id: 2,
@@ -47,35 +53,44 @@ let initialState = {
                         comment: "Pretty girl",
                         src: 'https://s3-img.pixpa.com/com/800/50172/1558057355-392466-mg-2766.jpg'
                     },
-                ]
+                ],
+                liked: false,
+                likesCount: 213,
             },
             {
                 id: 3,
                 src: 'https://s3-img.pixpa.com/com/500/50172/1609787761-805350-mg-1595.jpg',
                 text: 'my sunshine',
-                commentsData:[]
+                commentsData:[],
+                liked: true,
+                likesCount: 154,
             },
             {
                 id: 4,
                 src: 'https://drexel.edu/news/~/media/Drexel/Sites/News/Images/v2/story-images/2022/April/nature-relatedness-stock-bcsize/nature-relatedness-stock-bcsize_16x9.ashx',
                 text: 'my sunshine',
-                commentsData:[]
+                commentsData:[],
+                liked: true,
+                likesCount: 181,
             },
             {
                 id: 5,
-                src: 'https://scontent.fevn5-1.fna.fbcdn.net/v/t39.30808-6/312415246_658788482284218_7301860167085711371_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=730e14&_nc_ohc=mGWGVqEN0_AAX9498Q0&_nc_ht=scontent.fevn5-1.fna&oh=00_AfDbAnd67X-_ZV-YmEr4uULFB4lsNLK5uGipCKf3-OYBAw&oe=63BF6216',
+                src: 'https://scontent.fevn5-1.fna.fbcdn.net/v/t1.6435-9/81699035_1660505584111977_2095246014508722499_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=5wEgzgz0o-sAX-Tm3hD&_nc_ht=scontent.fevn5-1.fna&oh=00_AfA7mOpxxY1PiYs5VwQyPZCsTV1gGRh3VBiYiGkG5kODmg&oe=63F33E5F',
                 text: 'November is so different🍂.. dirty , naked , sloppy .. or maybe cozy and poetic? My attitude to November changes ten times during the day )',
                 commentsData:[
                     {
-                        id: 3,
+                        id: 1,
                         name: 'Lucas',
                         comment: 'Hi',
                         src: 'https://celebsupdate.com/wp-content/uploads/2020/02/Chris-Hemsworth-Hollywood-Actor.jpg'
                     }
-                ]
+                ],
+                liked: false,
+                likesCount: 167,
             },
         ],
         newPostText: '',
+        newCommentText: '',
         myInfo: {
             photosData: [
                 {id: 1, 
@@ -149,6 +164,7 @@ let initialState = {
 };
 
 const profileReducer = (state = initialState, action) => {
+    let copyState = JSON.parse(JSON.stringify(state));
     switch(action.type){
         case  ADD_POST:
             let newPosts = {
@@ -162,17 +178,87 @@ const profileReducer = (state = initialState, action) => {
                         comment: 'I am so grateful that you show this gorgeous world trough your eyes to us ! 🙏❤️',
                         src: 'https://scontent.fevn5-1.fna.fbcdn.net/v/t39.30808-6/312792756_650196539810079_453434720747196609_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=730e14&_nc_ohc=JDV4AnCoQcEAX8EPjmK&tn=Tr_cLuVJIKPhxOK3&_nc_ht=scontent.fevn5-1.fna&oh=00_AfDL5_BjLiA3SG44hbD71dVH_Gu88N00fb5_8YxCBmCdqw&oe=63BF8408',
                     }
-                ],  
+                ],
+                liked: true,
             };   
-            state.postsData.unshift(newPosts);
-            state.newPostText = '';
-            return state;
+            copyState.postsData.unshift(newPosts);
+            copyState.newPostText = '';
+            return copyState;
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText;
-            return state;
+            copyState.newPostText = action.newText;
+            return copyState;
+        case ADD_COMMENT:
+            let newComment =  {
+                id: 1,
+                name: 'Mia',
+                comment: state.newCommentText,
+                src: 'https://scontent.fevn5-1.fna.fbcdn.net/v/t1.6435-9/116487761_1709970135832188_2623279487738365785_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=bSnYTPPWyNcAX_30MCJ&tn=Tr_cLuVJIKPhxOK3&_nc_ht=scontent.fevn5-1.fna&oh=00_AfC_c5AECGXNXSLvvMUvq29dMZwwIGBnVpGsNOrpS54iAw&oe=63F3B518'
+            };
+             copyState.postsData.map(post =>{
+                if(post.id === action.postID){
+                   return {post,commentsData:post.commentsData.push(newComment)};
+                }
+                return post;
+            });
+
+            copyState.newCommentText = '';
+            return  copyState;
+         
+        case UPDATE_NEW_COMMENT_TEXT:            
+            copyState.newCommentText = action.newText;
+            return copyState;
+
+        case LIKE:
+            copyState.postsData.map(post => {
+                 if(post.id === action.postID){
+                    post.liked = false;
+                    post.likesCount = post.likesCount - 1;
+                     return  post;
+                 }
+                 return post;    
+             });
+            return copyState;
+        case DISLIKE: 
+            copyState.postsData.map(post => {
+                 if(post.id === action.postID){
+                    post.liked = true;
+                    post.likesCount = post.likesCount + 1;
+                     return post;
+                 }
+                 return post;
+             });
+            return copyState;
         default: 
             return state;
     }
 };
+
+
+
+
+
+export let addPostActionCreator = () =>({type: ADD_POST});
+
+
+export let updateNewPostTextActionCreator = (text) => (
+            { type: UPDATE_NEW_POST_TEXT,
+              newText: text,
+            }
+);
+
+export let addCommentAC = (postID) => ({type: ADD_COMMENT, postID});
+
+
+export let updateNewCommentTextAC = (newText, postID) => (
+    { type: UPDATE_NEW_COMMENT_TEXT,
+      newText: newText,
+      postID
+    }
+);
+
+
+export let likeAC = (postID) => ({type: LIKE, postID});
+
+export let disLikeAC = (postID) => ({type: DISLIKE, postID});
 
 export default profileReducer;

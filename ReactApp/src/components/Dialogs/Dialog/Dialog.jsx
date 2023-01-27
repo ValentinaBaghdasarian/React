@@ -1,25 +1,20 @@
 import React from "react";
-import StoreContext from "../../../redux/StoreContext";
 import classes from './Dialog.module.css';
-import DialogsItem from "./DialogsItem/DialogsItem";
+import {NavLink} from 'react-router-dom';
 
+function Dilaog(props){
+    return (
+        <div className={classes.dialogsItems}>
+                {props.dialogData.map(usersDialog => <div key={usersDialog.id} className={`${classes.item} ${classes.active}`}>
+                    <div className={classes.img}>
+                        <img src={usersDialog.url} alt=''/>
+                    </div>
+                    <div className={classes.link}>
+                        <NavLink to={`/dialogs/${usersDialog.id}`} className={({isActive}) => (isActive ? classes.active : classes.item)}>{usersDialog.name} </NavLink>
+                    </div>
+                </div>) }  
+        </div>
+    );
+}
 
-function Dialog(props){
-   return( 
-    <StoreContext.Consumer>{
-        (store) =>{
-            let state = store.getState().dialog;
-            let DialogElements = state.dialogData.map( d => <DialogsItem id={d.id} name={d.name} url={d.url}/>);
-
-            return (
-                <div className={classes.dialogsItems}>
-                    { DialogElements }
-                </div>
-            );
-        }
-    }
-    </StoreContext.Consumer>
-   )
-};
-
-export default Dialog;
+export default Dilaog;

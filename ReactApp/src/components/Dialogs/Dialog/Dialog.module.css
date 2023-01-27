@@ -3,10 +3,10 @@
     padding: 10px;
     width: 300px;
     height: 600px;
-    margin-top: 10px;
     font-size: 25px;
-    background-color: rgba(96, 173, 162, 0.189);
+    background: linear-gradient(to top right, white ,#49745a);
     border-right: 1px solid;
+    border: 1px solid;
 }
 
 .item{
@@ -20,7 +20,7 @@
 }
 
 .item a.active{
-    color:blue;
+    color:white;
 }
 
 .item img{

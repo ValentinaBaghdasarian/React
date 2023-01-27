@@ -1,7 +1,6 @@
 import React from 'react';
 import classes from './ProfileInfo.module.css';
 import UserAvatar from '../UserAvatar/UserAvatar';
-// import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../redux/store';
 
 
 
@@ -9,7 +8,6 @@ import UserAvatar from '../UserAvatar/UserAvatar';
 
 
 function ProfileInfo(props){
-debugger
     // let newPostElement = React.createRef();
 
     let onAddPost = () => {

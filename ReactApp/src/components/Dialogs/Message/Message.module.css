@@ -1,0 +1,72 @@
+/* message.jsx */
+.formMassage{
+    display: grid;
+    grid-template-areas: 
+    'postAvatar dialog';
+    grid-template-columns: 1fr 15fr;
+}
+
+.dialog{
+    /* color: black; */
+    padding: 10px 5px 13px 8px;
+    margin: 5px ;
+    border-radius: 10px;
+    width: 150px;
+    grid-area: dialog;
+    background-color:#f6f8fc;
+    height: 20px;
+}
+
+
+.postAvatar{
+    display: inline-block;
+    grid-area: postAvatar;
+    cursor: pointer;
+}
+
+/* messages.jsx */
+
+.messages{
+    grid-area: messages;
+    /* height: 600px; */
+    padding: 10px;
+    /* margin-top: 10px; */
+    /* background-color: #8BA6B9; */
+    background: #C7D5D8;
+}
+
+
+.messageArea{
+    display: flex;
+    /* flex-direction: column; */
+    width: 1000px;
+    border-top: 1px solid grey;
+}
+
+.sendMessageInp{
+    width: 800px;
+    background-color: #ffffff;
+
+
+}
+
+.sendMessageInp:hover{
+    background-color: #F0F2F5;
+    transition: 0.5s;
+}
+
+.submit{
+    width: 100px;
+    border-radius: 3px;
+    /* background-color:rgba(15, 133, 115, 0.481); */
+    background: #3C5D7C;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.submit:hover{
+    background:#0C283D;
+}

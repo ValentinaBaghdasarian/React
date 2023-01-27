@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports["default"] = exports.updateNewMessageTextActionCreator = exports.addMessageActionCreator = void 0;
 var SEND_MESSAGE = 'ADD-MESSAGE';
 var UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 var initialState = {
@@ -42,13 +42,52 @@ var initialState = {
   }],
   messagesData: [{
     id: 1,
-    message: 'Hi'
+    message: [{
+      text: 'Hi'
+    }, {
+      text: 'Hi'
+    }, {
+      text: 'Hi'
+    }, {
+      text: 'Hi'
+    }]
   }, {
     id: 2,
-    message: 'Hi my dear'
+    message: [{
+      text: 'Hi my dear'
+    }, {
+      text: 'Hi my dear'
+    }, {
+      text: 'Hi my dear'
+    }, {
+      text: 'Hi my dear'
+    }]
   }, {
     id: 3,
-    message: 'You are welcome!!!'
+    message: [{
+      text: 'You are welcome!!!'
+    }, {
+      text: 'You are welcome!!!'
+    }, {
+      text: 'You are welcome!!!'
+    }, {
+      text: 'You are welcome!!!'
+    }]
+  }, {
+    id: 4,
+    message: []
+  }, {
+    id: 5,
+    message: []
+  }, {
+    id: 6,
+    message: []
+  }, {
+    id: 7,
+    message: []
+  }, {
+    id: 8,
+    message: []
   }],
   newMessageBody: ''
 };
@@ -56,25 +95,47 @@ var initialState = {
 var dialogReducer = function dialogReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  var copyState = JSON.parse(JSON.stringify(state));
 
   switch (action.type) {
     case SEND_MESSAGE:
-      var body = state.newMessageBody;
-      state.messagesData.push({
-        id: 4,
-        message: body
+      var body = copyState.newMessageBody;
+      copyState.messagesData.map(function (mess) {
+        if (mess.id === action.userId) {
+          mess.message.push({
+            text: body
+          });
+          copyState.newMessageBody = '';
+          return copyState;
+        }
       });
-      state.newMessageBody = '';
-      return state;
+      return copyState;
 
     case UPDATE_NEW_MESSAGE_BODY:
-      state.newMessageBody = action.newMessageText;
-      return state;
+      copyState.newMessageBody = action.newMessageText;
+      return copyState;
 
     default:
       return state;
   }
 };
 
+var addMessageActionCreator = function addMessageActionCreator(userId) {
+  return {
+    type: SEND_MESSAGE,
+    userId: userId
+  };
+};
+
+exports.addMessageActionCreator = addMessageActionCreator;
+
+var updateNewMessageTextActionCreator = function updateNewMessageTextActionCreator(messageText) {
+  return {
+    type: UPDATE_NEW_MESSAGE_BODY,
+    newMessageText: messageText
+  };
+};
+
+exports.updateNewMessageTextActionCreator = updateNewMessageTextActionCreator;
 var _default = dialogReducer;
 exports["default"] = _default;

@@ -195,6 +195,9 @@ let store = {
                     },
                 ]
             }
+        },
+        usersPage: {
+            users: []
         }
         
     },
@@ -223,18 +226,18 @@ let store = {
 
  
 
-export let addPostActionCreator = () =>({type: ADD_POST});
+let addPostActionCreator = () =>({type: ADD_POST});
 
 
-export let updateNewPostTextActionCreator = (text) => (
+let updateNewPostTextActionCreator = (text) => (
             { type: UPDATE_NEW_POST_TEXT,
               newText: text,
             }
 );
 
-export let addMessageActionCreator = () =>({type: SEND_MESSAGE});
+ let addMessageActionCreator = () =>({type: SEND_MESSAGE});
 
-export let updateNewMessageTextActionCreator = (messageText) => {
+ let updateNewMessageTextActionCreator = (messageText) => {
     return {
         type: UPDATE_NEW_MESSAGE_BODY,
         newMessageText: messageText, 

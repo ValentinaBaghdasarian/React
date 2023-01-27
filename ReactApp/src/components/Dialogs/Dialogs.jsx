@@ -1,15 +1,13 @@
 import React from 'react';
-import StoreContext from '../../redux/StoreContext';
-import Dialog from './Dialog/Dialog';
 import classes from './Dialogs.module.css';
-import MessagesContainer from './Messeges/MessagesContainer';
+import DialogContainer from './Dialog/DialogContainer';
+import MessageContainer from './Message/MessageContainer';
 
-function Dialogs(props){
-    
+function Dialogs(){
         return(
             <div className={classes.dialogs}>
-                <Dialog />
-                <MessagesContainer/>
+                <DialogContainer />
+                <MessageContainer/>    
             </div>
         );  
     

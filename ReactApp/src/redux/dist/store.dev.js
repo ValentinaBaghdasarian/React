@@ -1,10 +1,5 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.updateNewMessageTextActionCreator = exports.addMessageActionCreator = exports.updateNewPostTextActionCreator = exports.addPostActionCreator = void 0;
-
 var _profileReducer = _interopRequireDefault(require("./reducers/profile-reducer"));
 
 var _dialogReducer = _interopRequireDefault(require("./reducers/dialog-reducer"));
@@ -188,6 +183,9 @@ var store = {
           name: 'Jack'
         }]
       }
+    },
+    usersPage: {
+      users: []
     }
   },
   _rerenderEntireTree: function _rerenderEntireTree() {// 
@@ -219,8 +217,6 @@ var addPostActionCreator = function addPostActionCreator() {
   };
 };
 
-exports.addPostActionCreator = addPostActionCreator;
-
 var updateNewPostTextActionCreator = function updateNewPostTextActionCreator(text) {
   return {
     type: UPDATE_NEW_POST_TEXT,
@@ -228,15 +224,11 @@ var updateNewPostTextActionCreator = function updateNewPostTextActionCreator(tex
   };
 };
 
-exports.updateNewPostTextActionCreator = updateNewPostTextActionCreator;
-
 var addMessageActionCreator = function addMessageActionCreator() {
   return {
     type: SEND_MESSAGE
   };
 };
-
-exports.addMessageActionCreator = addMessageActionCreator;
 
 var updateNewMessageTextActionCreator = function updateNewMessageTextActionCreator(messageText) {
   return {
@@ -245,5 +237,4 @@ var updateNewMessageTextActionCreator = function updateNewMessageTextActionCreat
   };
 };
 
-exports.updateNewMessageTextActionCreator = updateNewMessageTextActionCreator;
 window.store = store; // export default store;

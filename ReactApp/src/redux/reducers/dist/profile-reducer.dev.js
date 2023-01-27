@@ -3,9 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports["default"] = exports.disLikeAC = exports.likeAC = exports.updateNewCommentTextAC = exports.addCommentAC = exports.updateNewPostTextActionCreator = exports.addPostActionCreator = void 0;
 var ADD_POST = 'ADD-POST';
 var UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+var ADD_COMMENT = 'ADD_COMMENT';
+var UPDATE_NEW_COMMENT_TEXT = 'UPDATE_NEW_COMMENT_TEXT';
+var LIKE = 'LIKE';
+var DISLIKE = 'DISLIKE';
 var initialState = {
   postsData: [{
     id: 1,
@@ -26,7 +30,9 @@ var initialState = {
       name: 'Lucas',
       comment: 'Hi',
       src: 'https://celebsupdate.com/wp-content/uploads/2020/02/Chris-Hemsworth-Hollywood-Actor.jpg'
-    }]
+    }],
+    liked: true,
+    likesCount: 124
   }, {
     id: 2,
     src: 'https://d1whtlypfis84e.cloudfront.net/guides/wp-content/uploads/2019/07/23090714/nature-1024x682.jpeg',
@@ -41,29 +47,38 @@ var initialState = {
       name: 'Mia Le Da',
       comment: "Pretty girl",
       src: 'https://s3-img.pixpa.com/com/800/50172/1558057355-392466-mg-2766.jpg'
-    }]
+    }],
+    liked: false,
+    likesCount: 213
   }, {
     id: 3,
     src: 'https://s3-img.pixpa.com/com/500/50172/1609787761-805350-mg-1595.jpg',
     text: 'my sunshine',
-    commentsData: []
+    commentsData: [],
+    liked: true,
+    likesCount: 154
   }, {
     id: 4,
     src: 'https://drexel.edu/news/~/media/Drexel/Sites/News/Images/v2/story-images/2022/April/nature-relatedness-stock-bcsize/nature-relatedness-stock-bcsize_16x9.ashx',
     text: 'my sunshine',
-    commentsData: []
+    commentsData: [],
+    liked: true,
+    likesCount: 181
   }, {
     id: 5,
-    src: 'https://scontent.fevn5-1.fna.fbcdn.net/v/t39.30808-6/312415246_658788482284218_7301860167085711371_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=730e14&_nc_ohc=mGWGVqEN0_AAX9498Q0&_nc_ht=scontent.fevn5-1.fna&oh=00_AfDbAnd67X-_ZV-YmEr4uULFB4lsNLK5uGipCKf3-OYBAw&oe=63BF6216',
+    src: 'https://scontent.fevn5-1.fna.fbcdn.net/v/t1.6435-9/81699035_1660505584111977_2095246014508722499_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=5wEgzgz0o-sAX-Tm3hD&_nc_ht=scontent.fevn5-1.fna&oh=00_AfA7mOpxxY1PiYs5VwQyPZCsTV1gGRh3VBiYiGkG5kODmg&oe=63F33E5F',
     text: 'November is so different🍂.. dirty , naked , sloppy .. or maybe cozy and poetic? My attitude to November changes ten times during the day )',
     commentsData: [{
-      id: 3,
+      id: 1,
       name: 'Lucas',
       comment: 'Hi',
       src: 'https://celebsupdate.com/wp-content/uploads/2020/02/Chris-Hemsworth-Hollywood-Actor.jpg'
-    }]
+    }],
+    liked: false,
+    likesCount: 167
   }],
   newPostText: '',
+  newCommentText: '',
   myInfo: {
     photosData: [{
       id: 1,
@@ -136,6 +151,7 @@ var initialState = {
 var profileReducer = function profileReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  var copyState = JSON.parse(JSON.stringify(state));
 
   switch (action.type) {
     case ADD_POST:
@@ -148,20 +164,122 @@ var profileReducer = function profileReducer() {
           name: "Andrea Csuta",
           comment: 'I am so grateful that you show this gorgeous world trough your eyes to us ! 🙏❤️',
           src: 'https://scontent.fevn5-1.fna.fbcdn.net/v/t39.30808-6/312792756_650196539810079_453434720747196609_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=730e14&_nc_ohc=JDV4AnCoQcEAX8EPjmK&tn=Tr_cLuVJIKPhxOK3&_nc_ht=scontent.fevn5-1.fna&oh=00_AfDL5_BjLiA3SG44hbD71dVH_Gu88N00fb5_8YxCBmCdqw&oe=63BF8408'
-        }]
+        }],
+        liked: true
       };
-      state.postsData.unshift(newPosts);
-      state.newPostText = '';
-      return state;
+      copyState.postsData.unshift(newPosts);
+      copyState.newPostText = '';
+      return copyState;
 
     case UPDATE_NEW_POST_TEXT:
-      state.newPostText = action.newText;
-      return state;
+      copyState.newPostText = action.newText;
+      return copyState;
+
+    case ADD_COMMENT:
+      var newComment = {
+        id: 1,
+        name: 'Mia',
+        comment: state.newCommentText,
+        src: 'https://scontent.fevn5-1.fna.fbcdn.net/v/t1.6435-9/116487761_1709970135832188_2623279487738365785_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=bSnYTPPWyNcAX_30MCJ&tn=Tr_cLuVJIKPhxOK3&_nc_ht=scontent.fevn5-1.fna&oh=00_AfC_c5AECGXNXSLvvMUvq29dMZwwIGBnVpGsNOrpS54iAw&oe=63F3B518'
+      };
+      copyState.postsData.map(function (post) {
+        if (post.id === action.postID) {
+          return {
+            post: post,
+            commentsData: post.commentsData.push(newComment)
+          };
+        }
+
+        return post;
+      });
+      copyState.newCommentText = '';
+      return copyState;
+
+    case UPDATE_NEW_COMMENT_TEXT:
+      copyState.newCommentText = action.newText;
+      return copyState;
+
+    case LIKE:
+      copyState.postsData.map(function (post) {
+        if (post.id === action.postID) {
+          post.liked = false;
+          post.likesCount = post.likesCount - 1;
+          return post;
+        }
+
+        return post;
+      });
+      return copyState;
+
+    case DISLIKE:
+      copyState.postsData.map(function (post) {
+        if (post.id === action.postID) {
+          post.liked = true;
+          post.likesCount = post.likesCount + 1;
+          return post;
+        }
+
+        return post;
+      });
+      return copyState;
 
     default:
       return state;
   }
 };
 
+var addPostActionCreator = function addPostActionCreator() {
+  return {
+    type: ADD_POST
+  };
+};
+
+exports.addPostActionCreator = addPostActionCreator;
+
+var updateNewPostTextActionCreator = function updateNewPostTextActionCreator(text) {
+  return {
+    type: UPDATE_NEW_POST_TEXT,
+    newText: text
+  };
+};
+
+exports.updateNewPostTextActionCreator = updateNewPostTextActionCreator;
+
+var addCommentAC = function addCommentAC(postID) {
+  return {
+    type: ADD_COMMENT,
+    postID: postID
+  };
+};
+
+exports.addCommentAC = addCommentAC;
+
+var updateNewCommentTextAC = function updateNewCommentTextAC(newText, postID) {
+  return {
+    type: UPDATE_NEW_COMMENT_TEXT,
+    newText: newText,
+    postID: postID
+  };
+};
+
+exports.updateNewCommentTextAC = updateNewCommentTextAC;
+
+var likeAC = function likeAC(postID) {
+  return {
+    type: LIKE,
+    postID: postID
+  };
+};
+
+exports.likeAC = likeAC;
+
+var disLikeAC = function disLikeAC(postID) {
+  return {
+    type: DISLIKE,
+    postID: postID
+  };
+};
+
+exports.disLikeAC = disLikeAC;
 var _default = profileReducer;
 exports["default"] = _default;

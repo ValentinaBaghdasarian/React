@@ -1,0 +1,265 @@
+.myPosts{
+    grid-area: myPosts;
+    width: 600px;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* User.jsx */
+.user{
+    display: grid;
+
+    grid-template-areas: 
+    'postAvatar userName'
+    'postAvatar postDate'
+    ;
+
+    grid-template-columns: 1fr 10fr;
+}
+
+.userName{
+    grid-area: userName;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.postDate{
+    grid-area: postDate;
+    font-size: 12px;
+    border: none;
+}
+
+
+
+/* PublishedPost.jsx  */
+.text{
+    margin: 15px 10px 15px 25px;
+}
+
+/* Results.jsx */
+
+.results{
+    padding-left: 15px;
+    display: grid;
+    grid-template-areas: 
+    'countOfLike countOfComment';
+    grid-template-columns: 10fr 3fr;
+}
+
+.countOfLike{
+    grid-area: countOfLike;
+}
+
+.countOfComment{
+    grid-area: countOfComment;
+}
+
+
+/* Response.jsx */
+
+.response{
+    padding-left: 15px;
+    padding-right: 17px;
+    display: grid;
+    grid-template-areas: 
+    'like comment share';
+    grid-template-columns: 7fr 8fr 2fr;
+}
+
+.like > input{
+    grid-area: like;
+    color: #3C5D7C;
+    text-align: center;
+    width: 150px;
+    background: none;
+    height: 20px;
+    cursor: pointer; 
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.like:hover {
+    background-color:#F0F2F5;
+    border-radius: 7px;
+    cursor: pointer; 
+}
+
+.disLike > input{
+    grid-area: like;
+    color: black;
+    text-align: center;
+    width: 150px;
+    background: none;
+    height: 20px;
+    cursor: pointer;
+    font-weight: bold; 
+    font-size: 15px;
+
+}
+
+.disLike:hover {
+    background-color:#F0F2F5;
+    border-radius: 7px;
+    cursor: pointer; 
+}
+
+.responseComm > input{
+    grid-area: comment;
+    color: black;
+    text-align: center;
+    width: 200px;
+    background: none;
+    font-weight: bold; 
+    height: 20px;
+    cursor: pointer; 
+    font-size: 15px;
+    
+}
+
+.responseComm:hover{
+    background-color:#F0F2F5;
+    border-radius: 7px;
+    cursor: pointer; 
+}
+
+.share > input{
+    grid-area: share;
+    color: black;
+    text-align: center;
+    width: 150px;
+    background: none;
+    font-weight: bold; 
+    height: 20px;
+    cursor: pointer; 
+    font-size: 15px;
+
+}
+
+.share:hover{
+    background-color:#F0F2F5;
+    border-radius: 7px;
+    cursor: pointer; 
+}
+
+hr{
+    margin: 4px;
+    margin-left: 10px;
+    padding: 0;
+}
+
+
+/* newPosts.jsx */
+
+.formForPost{
+    width: 100%;
+}
+
+.addCom{
+    padding: 15px; 
+    display: grid; 
+    grid-template-areas: 
+    'postAvatar text';
+    grid-template-columns: 1fr 10fr;
+}
+.addComItem > input{
+    margin:10px;
+    width: 490px;
+    height: 35px;
+    border-radius: 15px;
+    background-color: #F0F2F5;
+    padding-left: 10px;
+    float: left;
+    border: 0.5px white; 
+}
+
+.postAvatar{
+    grid-area: postAvatar;
+}
+
+.commText{
+    grid-area: text;
+    border: none;
+    background-color: #F0F2F5;
+}
+
+
+/* comments.jsx */
+
+.comments{
+    padding: 15px;
+}
+
+.item{
+    display: grid;
+    grid-template-areas: 
+    'postAvatar userName'
+    'postAvatar comment'
+    'postAvatar comLike';
+
+    grid-template-columns: 1fr 10fr ;
+}
+
+.postAvatar{
+    grid-area: postAvatar;
+}
+
+.commUserName{
+    grid-area: userName;
+    font-weight: bold;
+    padding: 5px 2px 2px 10px;
+}  
+
+.comment{
+    grid-area: comment;
+    padding: 0px 2px 9px 15px;
+}
+
+.comLike{
+    grid-area: comLike;
+    padding-left: 18px;
+    
+}
+
+.comLike span{
+    margin:0px 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.name_com{
+    width: 200px;
+    margin-left: 10px;
+    /* padding: 5px; */
+    border-radius: 25px;
+    border:none;
+    background-color:#F0F2F5;
+}
+
+.item img{ 
+    border-radius: 50%;
+    width: 50px;
+}
+
+/* new css */
+
+.sendCommText{
+    cursor: pointer;
+    width: 130px;
+    background: #0C283D;
+    margin-left: 180px;
+    margin-top: auto;
+    border-radius:5px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+}
+
+.sendCommText:hover{
+    background: #3C5D7C;
+    cursor: pointer;
+}
+
+.sendCommText > input{
+    
+}
