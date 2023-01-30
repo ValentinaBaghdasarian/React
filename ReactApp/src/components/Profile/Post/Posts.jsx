@@ -10,6 +10,7 @@ function Post(props){
     //         props.addComment();
     //     }
     // }
+    let refInput = React.createRef();
 
     function onCommentChange(e){
         let newText = e.target.value;
@@ -67,7 +68,8 @@ function Post(props){
 
                             
                             <div className={classes.responseComm}>
-                                <input type='submit' value='Comment'/>
+                                
+                                <input type='submit' value='Comment' onClick={() => {refInput.current.focus()}}/>
                             </div>
                             <div className={classes.share}>
                             <input type='submit' value='Share'/>
@@ -80,7 +82,7 @@ function Post(props){
                 {/* comments.jsx */}
                 {post.commentsData.map(comm => <div>
                     {/* { props.CommentElements } */}
-                    <div>
+                    
                         <div className={classes.comments}>
                             <div className={classes.item}>       
                                 <UserAvatar src={comm.src}/>
@@ -92,18 +94,20 @@ function Post(props){
                                         {comm.comment} 
                                     </div>
                                 </div>
-                                <div className={classes.comLike}> 
-                                    <span>Like</span>
+                                <div className={classes.comLikes}> 
+                                    {comm.liked? <span className={classes.comLove} onClick={() =>{props.comLike(comm.id)}}>Love</span> : <span className={classes.comLike} onClick={() =>{props.comDisLike(comm.id)}}>Like</span>}
                                     <span>Reply</span>
                                 </div>
+                                <div className={classes.delete}>...</div>
                             </div> 
                         </div>
-                    </div>   
                 </div>)}
+
+            
                 <div className={classes.addCom}>
                     <UserAvatar src='https://scontent.fevn5-1.fna.fbcdn.net/v/t1.6435-9/67525924_1377030872459451_2133847328698662912_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=vDzBRzsWiGwAX9MC28a&_nc_ht=scontent.fevn5-1.fna&oh=00_AfBVZP37KUZrWOGr5yic_O9tMTKVNzi9tECAvpc438CVGA&oe=63E25613'/>
-                    <div className={classes.addComItem} onSubmit={() => {if(props.profile.newCommentText !== ''){ props.addComment(post.id)}}}>
-                        <input className={classes.commText} placeholder='Write a comment...' onChange={onCommentChange} value={props.profile.newCommentText}/>
+                    <div className={classes.addComItem}>
+                        <input className={classes.commText} ref={refInput} placeholder='Write a comment...' onChange={onCommentChange} value={props.profile.newCommentText}/>
                         <div>
                             <input className={classes.sendCommText} type='submit' value='Send' onClick={() => {if(props.profile.newCommentText !== ''){ props.addComment(post.id)}}}/>
                         </div>

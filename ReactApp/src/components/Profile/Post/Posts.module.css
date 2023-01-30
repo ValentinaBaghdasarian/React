@@ -193,11 +193,11 @@ hr{
 .item{
     display: grid;
     grid-template-areas: 
-    'postAvatar userName'
-    'postAvatar comment'
-    'postAvatar comLike';
+    'postAvatar userName delete'
+    'postAvatar comment delete'
+    'postAvatar comLike delete';
 
-    grid-template-columns: 1fr 10fr ;
+    grid-template-columns: 1fr 10fr 15fr;
 }
 
 .postAvatar{
@@ -215,17 +215,22 @@ hr{
     padding: 0px 2px 9px 15px;
 }
 
-.comLike{
+.comLikes{
     grid-area: comLike;
     padding-left: 18px;
     
 }
 
-.comLike span{
+.comLikes span{
     margin:0px 10px;
     font-size: 14px;
     cursor: pointer;
 }
+
+.comLove{
+    color: red;
+    font-weight: bold;
+} 
 
 .name_com{
     width: 200px;
@@ -263,3 +268,38 @@ hr{
 .sendCommText > input{
     
 }
+
+
+.delete{
+    grid-area: delete;
+    display: inline-block;
+    margin: 10px 6px;
+    color: white;
+}
+
+.delete:hover{
+    color:black;
+    font-weight: bold;
+    font-size: 22px;
+    background:#F0F2F5;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+
+/* .item:hover::after{
+    content: '...';
+    color: red;
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-left: 6px;
+    margin: 10px;
+    cursor: pointer;
+    background:green;
+} */

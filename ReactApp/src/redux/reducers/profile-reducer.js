@@ -7,6 +7,9 @@ const UPDATE_NEW_COMMENT_TEXT = 'UPDATE_NEW_COMMENT_TEXT';
 const LIKE = 'LIKE';
 const DISLIKE = 'DISLIKE';
 
+const COM_LIKE = 'COM_LIKE';
+const COM_DISLIKE = 'COM_DISLIKE';
+
 let initialState = {
         postsData: [
             {
@@ -18,19 +21,22 @@ let initialState = {
                         id: 1,
                         name: 'Anna Lucy',
                         comment: "You are beautiful))",
-                        src: 'https://s3-img.pixpa.com/com/500/50172/1620766827-675978-mg-8890.jpg'
+                        src: 'https://s3-img.pixpa.com/com/500/50172/1620766827-675978-mg-8890.jpg',
+                        liked: true,
                     },
                     {
                         id: 2,
                         name: 'Mia Le Da',
                         comment: "Pretty girl",
-                        src: 'https://s3-img.pixpa.com/com/800/50172/1558057355-392466-mg-2766.jpg'
+                        src: 'https://s3-img.pixpa.com/com/800/50172/1558057355-392466-mg-2766.jpg',
+                        liked: false,
                     },
                     {
                         id: 3,
                         name: 'Lucas',
                         comment: 'Hi',
-                        src: 'https://celebsupdate.com/wp-content/uploads/2020/02/Chris-Hemsworth-Hollywood-Actor.jpg'
+                        src: 'https://celebsupdate.com/wp-content/uploads/2020/02/Chris-Hemsworth-Hollywood-Actor.jpg',
+                        liked: false,
                     },
                 ],
                 liked: true,
@@ -45,13 +51,15 @@ let initialState = {
                         id: 1,
                         name: 'Anna Lucy',
                         comment: "You are beautiful))",
-                        src: 'https://s3-img.pixpa.com/com/500/50172/1620766827-675978-mg-8890.jpg'
+                        src: 'https://s3-img.pixpa.com/com/500/50172/1620766827-675978-mg-8890.jpg',
+                        liked: false,
                     },
                     {
                         id: 2,
                         name: 'Mia Le Da',
                         comment: "Pretty girl",
-                        src: 'https://s3-img.pixpa.com/com/800/50172/1558057355-392466-mg-2766.jpg'
+                        src: 'https://s3-img.pixpa.com/com/800/50172/1558057355-392466-mg-2766.jpg',
+                        liked: false,
                     },
                 ],
                 liked: false,
@@ -82,7 +90,8 @@ let initialState = {
                         id: 1,
                         name: 'Lucas',
                         comment: 'Hi',
-                        src: 'https://celebsupdate.com/wp-content/uploads/2020/02/Chris-Hemsworth-Hollywood-Actor.jpg'
+                        src: 'https://celebsupdate.com/wp-content/uploads/2020/02/Chris-Hemsworth-Hollywood-Actor.jpg',
+                        liked: false,
                     }
                 ],
                 liked: false,
@@ -189,13 +198,15 @@ const profileReducer = (state = initialState, action) => {
             return copyState;
         case ADD_COMMENT:
             let newComment =  {
-                id: 1,
+                id: 4,
                 name: 'Mia',
                 comment: state.newCommentText,
-                src: 'https://scontent.fevn5-1.fna.fbcdn.net/v/t1.6435-9/116487761_1709970135832188_2623279487738365785_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=bSnYTPPWyNcAX_30MCJ&tn=Tr_cLuVJIKPhxOK3&_nc_ht=scontent.fevn5-1.fna&oh=00_AfC_c5AECGXNXSLvvMUvq29dMZwwIGBnVpGsNOrpS54iAw&oe=63F3B518'
+                src: 'https://scontent.fevn5-1.fna.fbcdn.net/v/t1.6435-9/116487761_1709970135832188_2623279487738365785_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=bSnYTPPWyNcAX_30MCJ&tn=Tr_cLuVJIKPhxOK3&_nc_ht=scontent.fevn5-1.fna&oh=00_AfC_c5AECGXNXSLvvMUvq29dMZwwIGBnVpGsNOrpS54iAw&oe=63F3B518',
+                liked: false,
             };
              copyState.postsData.map(post =>{
                 if(post.id === action.postID){
+                    
                    return {post,commentsData:post.commentsData.push(newComment)};
                 }
                 return post;
@@ -214,6 +225,7 @@ const profileReducer = (state = initialState, action) => {
                     post.liked = false;
                     post.likesCount = post.likesCount - 1;
                      return  post;
+                     
                  }
                  return post;    
              });
@@ -228,12 +240,31 @@ const profileReducer = (state = initialState, action) => {
                  return post;
              });
             return copyState;
+        case COM_LIKE:
+            debugger
+            copyState.postsData.map(post => {
+                post.commentsData.map(com => {
+                    if(com.id === action.commentID){
+                        com.liked = false;
+                        return com;
+                    }
+                });
+            });
+            return copyState;
+        case COM_DISLIKE:
+            copyState.postsData.map(post => {
+                post.commentsData.map(com => {
+                    if(com.id === action.commentID){
+                        com.liked = true;
+                        return com;
+                    }
+                });
+            });
+            return copyState;
         default: 
             return state;
     }
 };
-
-
 
 
 
@@ -258,7 +289,10 @@ export let updateNewCommentTextAC = (newText, postID) => (
 
 
 export let likeAC = (postID) => ({type: LIKE, postID});
-
 export let disLikeAC = (postID) => ({type: DISLIKE, postID});
+
+
+export let comLikeAC = (commentID) => ({type: COM_LIKE, commentID});
+export let comDisLikeAC = (commentID) => ({type: COM_DISLIKE, commentID});
 
 export default profileReducer;

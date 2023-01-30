@@ -4,7 +4,6 @@ import classes from './photos.module.css';
 
 
 function Photos(props){
-    debugger
     let path = '/profile/photos';
     let photosElement = props.myInfo.photosData.map(p => <DivForPhoto src={p.url} name={p.name}/> );
 

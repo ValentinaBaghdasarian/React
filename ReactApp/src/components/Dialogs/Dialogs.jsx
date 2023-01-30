@@ -7,7 +7,7 @@ function Dialogs(){
         return(
             <div className={classes.dialogs}>
                 <DialogContainer />
-                <MessageContainer/>    
+                <MessageContainer/>   
             </div>
         );  
     

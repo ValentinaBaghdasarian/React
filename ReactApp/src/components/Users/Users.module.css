@@ -102,3 +102,30 @@
 }
 
 
+.selectedPage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pageNumber {
+    margin:0px 5px;
+    cursor: pointer;
+    padding: 3px 6px; 
+    color:white;
+    font-size: 17px;
+
+}
+
+.pageNumber:hover {
+    background: rgb(220, 220, 220);
+    color:rgb(84, 84, 84);
+    
+}
+
+.selectedPage{
+    font-weight: bold;
+    color: green;
+    font-size: 22px;
+}
+
