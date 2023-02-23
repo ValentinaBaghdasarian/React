@@ -1,3 +1,19 @@
+.input{
+    /* padding-left: 10px; */
+    /* margin:10px; */
+    /* float: left; */
+    /* width: 510px; */
+    /* height: 60px; */
+    /* border-radius: 15px; */
+    /* background-color: #F0F2F5; */
+    /* border: 0.5px white;     */
+}
+
+.commText:focus{
+    outline: none;
+}
+
+
 .myPosts{
     grid-area: myPosts;
     width: 600px;
@@ -44,15 +60,34 @@
     display: grid;
     grid-template-areas: 
     'countOfLike countOfComment';
-    grid-template-columns: 10fr 3fr;
+    grid-template-columns: 15fr 2fr;
 }
 
 .countOfLike{
     grid-area: countOfLike;
 }
 
+
+.divImg{
+    display: inline-block; 
+    /* margin-right: 10px; */
+    width: 25px;
+    height: 25px;
+}
+
+.divLike{
+    display: inline-block;  
+    margin-left: 10px;   
+}
+
+.divCom{
+    display: inline-block; 
+    width: 25px;
+    height: 25px; 
+    margin-right: 10px;
+}
 .countOfComment{
-    grid-area: countOfComment;
+    grid-area: countOfComment;  
 }
 
 
@@ -63,20 +98,36 @@
     padding-right: 17px;
     display: grid;
     grid-template-areas: 
-    'like comment share';
-    grid-template-columns: 7fr 8fr 2fr;
+    'like comment send';
+    grid-template-columns: 7fr 6fr 2fr;
+}
+
+.like{
+    display: grid;
+    grid-template-areas: 
+    'img like';
+    margin-left: 50px;
+    width: 80px;
+    padding: 0px 20px;
+}
+
+.likeResponseDiv{
+    grid-area: img;
 }
 
 .like > input{
     grid-area: like;
     color: #3C5D7C;
     text-align: center;
-    width: 150px;
+    width: 50px;
+    margin-right: 100px;
+    margin-top: 2px;
     background: none;
     height: 20px;
     cursor: pointer; 
     font-weight: bold;
     font-size: 15px;
+    border: none;
 }
 
 .like:hover {
@@ -85,35 +136,65 @@
     cursor: pointer; 
 }
 
+.disLike{
+    display: grid;
+    grid-template-areas: 
+    'img like';
+    margin-left: 50px;
+    width: 80px;
+    padding: 0px 20px;
+    
+}
+.disLikeResponseDiv{
+    grid-area: img;
+}
+
 .disLike > input{
     grid-area: like;
     color: black;
     text-align: center;
-    width: 150px;
+    width: 50px;
+    margin-right: 100px;
+    margin-top: 2px;
     background: none;
     height: 20px;
-    cursor: pointer;
-    font-weight: bold; 
+    cursor: pointer; 
+    font-weight: bold;
     font-size: 15px;
-
+    border: none;
 }
 
 .disLike:hover {
     background-color:#F0F2F5;
     border-radius: 7px;
-    cursor: pointer; 
+    cursor: pointer;
+}
+
+.responseComm{
+    display: grid;
+    grid-template-areas: 
+    'img comment';
+    width: 110px;
+    padding: 0px 20px;
+}
+
+.commentResponseDiv{
+    grid-area: img;
 }
 
 .responseComm > input{
     grid-area: comment;
     color: black;
-    text-align: center;
-    width: 200px;
+    text-align: start;
+    width: 150px;
+    margin-right: 10px;
+    margin-top: 2px;
     background: none;
     font-weight: bold; 
     height: 20px;
     cursor: pointer; 
     font-size: 15px;
+    border: none;
     
 }
 
@@ -123,23 +204,50 @@
     cursor: pointer; 
 }
 
-.share > input{
-    grid-area: share;
+.send{
+    display: grid;
+    grid-template-areas: 
+    'img send';
+    grid-template-columns: 10fr 1fr;
+    width: 90px;
+    padding:0px 25px;
+}
+
+.sendResponseDiv{
+    grid-area: img;
+}
+
+.send > .input{
+    grid-area: send;
     color: black;
-    text-align: center;
-    width: 150px;
+    text-align: start;
+    width: 100px;
+    margin-top: 2px;
     background: none;
     font-weight: bold; 
     height: 20px;
     cursor: pointer; 
     font-size: 15px;
+    border: none;
 
 }
 
-.share:hover{
+.send:hover{
     background-color:#F0F2F5;
     border-radius: 7px;
     cursor: pointer; 
+}
+
+.responseDiv{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.responseImg{
+    width: 25px;
+    height: 25px;
 }
 
 hr{
@@ -258,6 +366,9 @@ hr{
     text-align: center;
     font-weight: bold;
     color: white;
+    height: 40px;
+    border:none;
+
 }
 
 .sendCommText:hover{
@@ -265,9 +376,11 @@ hr{
     cursor: pointer;
 }
 
-.sendCommText > input{
-    
+.sendCommText:focus{
+    outline: none;
 }
+
+
 
 
 .delete{

@@ -23,7 +23,7 @@
     grid-area: post;
 }
 
-input{
+.input{
     padding-left: 10px;
     margin:10px;
     float: left;
@@ -34,7 +34,7 @@ input{
     border: 0.5px white;    
 }
 
-input:focus{
+.input:focus{
     outline: none;
 }
 

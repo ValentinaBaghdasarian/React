@@ -3,7 +3,17 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = exports.setTotalUsersCountAC = exports.setCurrentPageAC = exports.setUsersAC = exports.unfollowAC = exports.followAC = void 0;
+exports["default"] = exports.unfollow = exports.follow = exports.getUsers = exports.toggleIsFollowingProgress = exports.setTotalUsersCount = exports.setCurrentPage = exports.setUsers = exports.unfollowSuccess = exports.followSuccess = void 0;
+
+var _api = require("../../api/api");
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -16,22 +26,23 @@ var UNFOLLOW = 'UNFOLLOW';
 var SET_USERS = 'SET_USERS';
 var SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 var SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
+var TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 var initialState = {
   users: [],
   usersCount: 2000,
   totalUsersCount: 10,
-  currentPage: 1
+  currentPage: 1,
+  followingInProgress: []
 };
 
 var usersReducer = function usersReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  var stateCopy = JSON.parse(JSON.stringify(state));
 
   switch (action.type) {
     case FOLLOW:
-      return _objectSpread({}, stateCopy, {
-        users: stateCopy.users.map(function (user) {
+      return _objectSpread({}, state, {
+        users: state.users.map(function (user) {
           if (user.id === action.userId) {
             user.followed = false;
             return user;
@@ -42,8 +53,8 @@ var usersReducer = function usersReducer() {
       });
 
     case UNFOLLOW:
-      return _objectSpread({}, stateCopy, {
-        users: stateCopy.users.map(function (user) {
+      return _objectSpread({}, state, {
+        users: state.users.map(function (user) {
           if (user.id === action.userId) {
             user.followed = true;
             return user;
@@ -54,18 +65,25 @@ var usersReducer = function usersReducer() {
       });
 
     case SET_USERS:
-      return _objectSpread({}, stateCopy, {
+      return _objectSpread({}, state, {
         users: action.users
       });
 
     case SET_CURRENT_PAGE:
-      return _objectSpread({}, stateCopy, {
+      return _objectSpread({}, state, {
         currentPage: action.currentPage
       });
 
     case SET_TOTAL_USERS_COUNT:
-      return _objectSpread({}, stateCopy, {
+      return _objectSpread({}, state, {
         totalUsersCount: action.totalUsersCount
+      });
+
+    case TOGGLE_IS_FOLLOWING_PROGRESS:
+      return _objectSpread({}, state, {
+        followingInProgress: _toConsumableArray(state.users.filter(function (user) {
+          return user.followed === true;
+        }))
       });
 
     default:
@@ -74,49 +92,96 @@ var usersReducer = function usersReducer() {
 }; //ActionCreator = AC
 
 
-var followAC = function followAC(userId) {
+var followSuccess = function followSuccess(userId) {
   return {
     type: FOLLOW,
     userId: userId
   };
 };
 
-exports.followAC = followAC;
+exports.followSuccess = followSuccess;
 
-var unfollowAC = function unfollowAC(userId) {
+var unfollowSuccess = function unfollowSuccess(userId) {
   return {
     type: UNFOLLOW,
     userId: userId
   };
 };
 
-exports.unfollowAC = unfollowAC;
+exports.unfollowSuccess = unfollowSuccess;
 
-var setUsersAC = function setUsersAC(users) {
+var setUsers = function setUsers(users) {
   return {
     type: SET_USERS,
     users: users
   };
 };
 
-exports.setUsersAC = setUsersAC;
+exports.setUsers = setUsers;
 
-var setCurrentPageAC = function setCurrentPageAC(currentPage) {
+var setCurrentPage = function setCurrentPage(currentPage) {
   return {
     type: SET_CURRENT_PAGE,
     currentPage: currentPage
   };
 };
 
-exports.setCurrentPageAC = setCurrentPageAC;
+exports.setCurrentPage = setCurrentPage;
 
-var setTotalUsersCountAC = function setTotalUsersCountAC(totalUsersCount) {
+var setTotalUsersCount = function setTotalUsersCount(totalUsersCount) {
   return {
     type: SET_TOTAL_USERS_COUNT,
     totalUsersCount: totalUsersCount
   };
 };
 
-exports.setTotalUsersCountAC = setTotalUsersCountAC;
+exports.setTotalUsersCount = setTotalUsersCount;
+
+var toggleIsFollowingProgress = function toggleIsFollowingProgress(user) {
+  return {
+    type: TOGGLE_IS_FOLLOWING_PROGRESS,
+    user: user
+  };
+}; //thunk
+
+
+exports.toggleIsFollowingProgress = toggleIsFollowingProgress;
+
+var getUsers = function getUsers(currentPage, usersCount) {
+  return function (dispatch) {
+    dispatch(setCurrentPage(currentPage));
+
+    _api.usersAPI.getUsers(currentPage, usersCount).then(function (data) {
+      dispatch(setUsers(data.items));
+      dispatch(setTotalUsersCount(data.totalCount));
+    });
+  };
+};
+
+exports.getUsers = getUsers;
+
+var follow = function follow(userId) {
+  return function (dispatch) {
+    _api.followAPI.getFollow(userId).then(function (response) {
+      if (response.data.resultCode === 0) {
+        dispatch(followSuccess(userId));
+      }
+    });
+  };
+};
+
+exports.follow = follow;
+
+var unfollow = function unfollow(userId) {
+  return function (dispatch) {
+    _api.followAPI.getUnfollow(userId).then(function (response) {
+      if (response.data.resultCode === 0) {
+        dispatch(unfollowSuccess(userId));
+      }
+    });
+  };
+};
+
+exports.unfollow = unfollow;
 var _default = usersReducer;
 exports["default"] = _default;

@@ -49,3 +49,25 @@
     background-color:#e4e6ebc4;
     border-radius:5px;
 }
+
+
+.kubik {
+    display: inline-block;
+    width: 110px;
+    cursor: pointer;
+    margin-left: 8px;
+    margin-top: 5px;
+}
+
+.kubik img{
+    height: 150px;
+    border-radius: 5px;
+}
+
+.kubik span{
+    font-weight: bold;    
+}
+
+.kubik img:hover{
+    opacity: 0.9;
+}

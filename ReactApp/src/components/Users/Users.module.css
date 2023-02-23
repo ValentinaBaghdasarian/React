@@ -1,5 +1,5 @@
 .usersArea{
-    height: 800px;
+   
     background: linear-gradient(to top right,rgb(237, 187, 195), #7ccf9d)
     /* background: rgb(250, 240, 240); */
 }
@@ -52,6 +52,8 @@
     padding-left: 7px;
 
 }
+
+
 .followedBtn{
     grid-area: followedBtn;
     width: 80px;
@@ -59,39 +61,57 @@
     border-radius: 4px;
     font-weight: bold;
     background: linear-gradient(to bottom right,#7ccf9d, rgb(248, 194, 203)) ;
+    cursor: pointer;
+    border: none;
+    padding-left: 10px; 
+    margin:10px; 
+
 }
 
 .followedBtn:hover{
     background: linear-gradient(to bottom right,rgb(248, 194, 203),#7ccf9d ) ;
     opacity: 0.7;
     transition: 0.1s;
+
 }
+
+
 
 
 .seeMoreBtnForm{
     grid-area: seeAllBtn;
-    width: 550px;
+    width: 250px;
+    height: 100px;
     border-radius: 4px;
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 10px;
+    font-size: 18px; 
+    font-weight: bold; 
+    margin-top: 10px; 
     margin-left: auto;
-    margin-right: auto;    
-}
+    margin-right: auto; 
+    
+       
+} 
 
 .seeMoreBtnForm input{
     grid-area: seeAllBtn;
     color:white;
-    border-radius: 20px;
-    background: #2d563d;
+    border-radius: 15px;
+    background: #355e45;
     font-size: 18px;
     font-weight: bold;
+    height: 60px;
+    width: 200px;
+    float: left; 
+    margin: 10px; 
+    padding-left: 10px; 
+    border: none;
 }
 
-.seeMoreBtn:hover {
+/* .seeMoreBtn:hover {
     transition: 0.1s;
     background: #204f33;
-}
+    cursor: pointer;
+} */ 
 
 .text{
     margin: 0px;
@@ -127,5 +147,9 @@
     font-weight: bold;
     color: green;
     font-size: 22px;
+}
+
+.selectedPages{
+    font-weight: bold;
 }
 

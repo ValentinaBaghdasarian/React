@@ -1,6 +1,7 @@
-import React from "react";
+import React from 'react';
 import classes from './Dialog.module.css';
 import {NavLink} from 'react-router-dom';
+
 
 function Dilaog(props){
     return (

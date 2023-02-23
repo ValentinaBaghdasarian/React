@@ -1,3 +1,4 @@
+
 /* message.jsx */
 .formMassage{
     display: grid;
@@ -46,7 +47,11 @@
 .sendMessageInp{
     width: 800px;
     background-color: #ffffff;
-
+    padding-left: 10px; 
+    margin:10px; 
+    border-radius: 15px; 
+    border: 0.5px white;     
+    height: 35px;     
 
 }
 
@@ -64,9 +69,28 @@
     color: white;
     font-weight: bold;
     cursor: pointer;
+    padding-left: 10px; 
+    margin:10px;
+    border: none; 
 }
 
 
 .submit:hover{
     background:#0C283D;
+}
+
+
+.input{
+    padding-left: 10px; 
+    margin:10px; 
+    float: left; 
+    width: 510px; 
+    height: 60px; 
+    border-radius: 15px; 
+    background-color: #F0F2F5;
+    border: 0.5px white;     
+}
+
+.sendMessageInp:focus{
+    outline: none;
 }

@@ -1,10 +1,13 @@
-import {addCommentAC , updateNewCommentTextAC, likeAC, disLikeAC, comLikeAC, comDisLikeAC} from '../../../redux/reducers/profile-reducer';
+import {addCommentAC , updateNewCommentTextAC, likeAC, disLikeAC, comLikeAC, comDisLikeAC, setPostsAC} from '../../../redux/reducers/profile-reducer';
 import { connect } from 'react-redux';
 import Post from './Posts';
 
 
 let mapStateToProps = (state) => {
-    return {profile: state.profile};
+    return {
+        profile: state.profile,
+        postsData: state.profile.postsData
+    };
  };
 
 let mapDispatchToProps = (dispatch) => {
@@ -17,6 +20,7 @@ let mapDispatchToProps = (dispatch) => {
 
         comLike: (commentID) => dispatch(comLikeAC(commentID)),
         comDisLike: (commentID) => dispatch(comDisLikeAC(commentID)),
+        setPosts: (postData) => dispatch(setPostsAC(postData)),        
     };
 };
 

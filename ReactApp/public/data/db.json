@@ -1,0 +1,165 @@
+{
+    "users": [
+        {
+          "id": 1,
+          "name": "Leanne Graham",
+          "username": "Bret",
+          "email": "Sincere@april.biz",
+          "address": {
+            "street": "Kulas Light",
+            "suite": "Apt. 556",
+            "city": "Gwenborough",
+            "zipcode": "92998-3874",
+            "geo": {
+              "lat": "-37.3159",
+              "lng": "81.1496"
+            }
+          },
+          "phone": "1-770-736-8031 x56442",
+          "website": "hildegard.org",
+          "company": {
+            "name": "Romaguera-Crona",
+            "catchPhrase": "Multi-layered client-server neural-net",
+            "bs": "harness real-time e-markets"
+          }
+        }
+    ],
+
+    "friends": [
+        {
+          "id":1,
+          "name":"James",
+          "url":"https://media.newstrack.in/uploads/entertainment-news/hollywood-news/Dec/25/big_thumb/ghh1_5e0330bc40062.jpg"
+        },
+        {
+          "id":2,
+          "name":"William",
+          "url":"https://i.pinimg.com/736x/a9/2f/55/a92f55fb8ce0513db6f66fe331de5b72.jpg"
+        },
+        {
+          "id":3,
+          "name":"Lucy",
+          "url":"https://s3-img.pixpa.com/com/1200/50172/1558057258-167951-mg-2830.jpg"
+        },
+        {
+          "id":4,
+          "name":"Henry",
+          "url":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSexMqy5-eMyTxyPieNs8VbA_tLJWnOZ3z1AA&usqp=CAU"
+        },
+        {
+          "id":5,
+          "name":"Lucas",
+          "url":"https://www.pinkvilla.com/imageresize/leonardo_dicaprio_0.jpeg?width=752&t=pvorg"
+        },
+        {
+          "id":6,
+          "name":"Olivia",
+          "url":"https://s3-img.pixpa.com/com/800/50172/1558057134-415642-mg-2610.jpg"
+        },
+        {
+          "id":7,
+          "name":"Saphia",
+          "url":"https://s3-img.pixpa.com/com/800/50172/1558057199-925075-mg-3279.jpg"
+        },
+        {
+          "id":8,
+          "name":"Isabell",
+          "url":"https://s3-img.pixpa.com/com/800/50172/1609789572-225554-mg-3214.jpg"
+        },
+        {
+          "id":9,
+          "url":"https://www.themoviedb.org/t/p/w500/3bOGNsHlrswhyW79uvIHH1V43JI.jpg",
+          "name":"Jack"
+        }
+      ]
+}
+
+
+
+//  [
+//   // {
+//   //     id: 1,
+//   //     src: 'https://s3-img.pixpa.com/com/500/50172/1609789578-730041-mg-6579.jpg',
+//   //     text: 'my sunshine',
+//   //     commentsData: [
+//   //         {
+//   //             id: 1,
+//   //             name: 'Anna Lucy',
+//   //             comment: "You are beautiful))",
+//   //             src: 'https://s3-img.pixpa.com/com/500/50172/1620766827-675978-mg-8890.jpg',
+//   //             liked: true,
+//   //         },
+//   //         {
+//   //             id: 2,
+//   //             name: 'Mia Le Da',
+//   //             comment: "Pretty girl",
+//   //             src: 'https://s3-img.pixpa.com/com/800/50172/1558057355-392466-mg-2766.jpg',
+//   //             liked: false,
+//   //         },
+//   //         {
+//   //             id: 3,
+//   //             name: 'Lucas',
+//   //             comment: 'Hi',
+//   //             src: 'https://celebsupdate.com/wp-content/uploads/2020/02/Chris-Hemsworth-Hollywood-Actor.jpg',
+//   //             liked: false,
+//   //         },
+//   //     ],
+//   //     liked: true,
+//   //     likesCount: 124,
+//   // },
+//   // {
+//   //     id: 2,
+//   //     src: 'https://d1whtlypfis84e.cloudfront.net/guides/wp-content/uploads/2019/07/23090714/nature-1024x682.jpeg',
+//   //     text: 'my sunshine',
+//   //     commentsData: [
+//   //         {
+//   //             id: 1,
+//   //             name: 'Anna Lucy',
+//   //             comment: "You are beautiful))",
+//   //             src: 'https://s3-img.pixpa.com/com/500/50172/1620766827-675978-mg-8890.jpg',
+//   //             liked: false,
+//   //         },
+//   //         {
+//   //             id: 2,
+//   //             name: 'Mia Le Da',
+//   //             comment: "Pretty girl",
+//   //             src: 'https://s3-img.pixpa.com/com/800/50172/1558057355-392466-mg-2766.jpg',
+//   //             liked: false,
+//   //         },
+//   //     ],
+//   //     liked: false,
+//   //     likesCount: 213,
+//   // },
+//   // {
+//   //     id: 3,
+//   //     src: 'https://s3-img.pixpa.com/com/500/50172/1609787761-805350-mg-1595.jpg',
+//   //     text: 'my sunshine',
+//   //     commentsData:[],
+//   //     liked: true,
+//   //     likesCount: 154,
+//   // },
+//   // {
+//   //     id: 4,
+//   //     src: 'https://drexel.edu/news/~/media/Drexel/Sites/News/Images/v2/story-images/2022/April/nature-relatedness-stock-bcsize/nature-relatedness-stock-bcsize_16x9.ashx',
+//   //     text: 'my sunshine',
+//   //     commentsData:[],
+//   //     liked: true,
+//   //     likesCount: 181,
+//   // },
+//   // {
+//   //     id: 5,
+//   //     src: 'https://scontent.fevn5-1.fna.fbcdn.net/v/t1.6435-9/81699035_1660505584111977_2095246014508722499_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=5wEgzgz0o-sAX-Tm3hD&_nc_ht=scontent.fevn5-1.fna&oh=00_AfA7mOpxxY1PiYs5VwQyPZCsTV1gGRh3VBiYiGkG5kODmg&oe=63F33E5F',
+//   //     text: 'November is so different🍂.. dirty , naked , sloppy .. or maybe cozy and poetic? My attitude to November changes ten times during the day )',
+//   //     commentsData:[
+//   //         {
+//   //             id: 1,
+//   //             name: 'Lucas',
+//   //             comment: 'Hi',
+//   //             src: 'https://celebsupdate.com/wp-content/uploads/2020/02/Chris-Hemsworth-Hollywood-Actor.jpg',
+//   //             liked: false,
+//   //         }
+//   //     ],
+//   //     liked: false,
+//   //     likesCount: 167,
+//   // },
+// ],
